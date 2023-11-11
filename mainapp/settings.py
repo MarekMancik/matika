@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-fzm8k_#!7((ooz)#lrrs(7g(iy9lu9o5t5i_cr3d_9y46%%=i6
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,21 +70,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mainapp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+from gitignore.db_connect import connection_info
+
+
+DB_HOST = connection_info.get("HOST")
+DB_NAME = connection_info.get("NAME")
+DB_USER = connection_info.get("USER")
+DB_PORT = connection_info.get("PORT")
+DB_PASSWORD = connection_info.get("PASSWORD")
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'db.zkdedqypdicywasulxde.supabase.co',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PORT': '5432',
-        'PASSWORD': 'YX85jAtlWotMuhHE'
+        'HOST': DB_HOST,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PORT': DB_PORT,
+        'PASSWORD': DB_PASSWORD
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -105,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -116,7 +121,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
