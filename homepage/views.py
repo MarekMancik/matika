@@ -2,8 +2,8 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render
 
-# from todos.forms import RegistrationForm
-
+from todos.forms import RegistrationForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -16,21 +16,29 @@ def test_form(request):
     return HttpResponse("Data byla přijata!")
 
 
-# def registration_view(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             # Create a new user
-#             user = User.objects.create_user(
-#                 username=form.cleaned_data['email'],
-#                 password=form.cleaned_data['password'],
-#                 email=form.cleaned_data['email'],
-#                 first_name=form.cleaned_data['first_name'],
-#                 last_name=form.cleaned_data['last_name'],
-#             )
-#             # You can customize this part based on your needs
-#             return render(request, 'registration/success.html', {'user': user})
-#     else:
-#         form = RegistrationForm()
-#
-#     return render(request, 'registration/register.html', {'form': form})
+def registration_view(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            gender = form.cleaned_data['gender']
+            password = form.cleaned_data['password']
+
+            # created a new user
+            user = User.objects.create_user(
+                username=email,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                password=password,
+                gender=gender
+            )
+
+            return render(request, 'success_registration.html', {'user': user})
+    else:
+        # create new registration form
+        form = RegistrationForm()
+
+    return render(request, 'register.html', {'form': form})

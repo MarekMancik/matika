@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path
 
 from homepage import views
-# from homepage.views import registration_view
+from homepage.views import registration_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('test_form/', views.test_form, name='test_form'),
-    # path('register/', registration_view, name='register'),
+    path('register/', views.registration_view, name='register'),
 
 ]
