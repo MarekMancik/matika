@@ -26,4 +26,5 @@ urlpatterns = [
     path('test_form/', views.test_form, name='test_form'),
     path('register/', views.registration_view, name='register'),
 
+
 ]
