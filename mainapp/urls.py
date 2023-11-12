@@ -17,8 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from homepage import views
-from homepage.views import registration_view
+from todos import views
+from todos.views import registration_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -11,7 +11,7 @@
     <div>
       <h2 class="container text-center">Registrace nového uživatele:</h2>
 
-              <form method="post" action="{% url 'success_registration' %}">
+              <form method="post" action="{% url 'register' %}">
                 {% csrf_token %}
 
                 {% for field in form %}
