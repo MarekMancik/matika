@@ -63,9 +63,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             print('úspěšné přihlášení')
-            return redirect('index.html/')
+            return redirect('index')
 
         else:
             print("špatný email, nebo heslo, zkuste to prosím znovu")
+            return redirect('index')
 
-    return render(request, 'index.html')
+    return render(request, 'index')
