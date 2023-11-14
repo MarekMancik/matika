@@ -32,27 +32,28 @@
               </li>
               <li class="nav-item">
 
-
+<!--Přihlašení:-->
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      Přihlašení:
+                    Přihlášení:
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
-                      <form>
+                      <form method="post" action="{% url 'login_user' %}">
+                        {% csrf_token %}
                         <div class="row mb-3">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3">
+                            <input type="email" class="form-control" id="inputEmail3" name="login_email" value="">
                           </div>
                         </div>
                         <div class="row mb-3">
                           <label for="inputPassword3" class="col-sm-2 col-form-label">Heslo</label>
                           <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3">
+                            <input type="password" class="form-control" id="inputPassword3" name="login_password" value="">
                           </div>
                         </div>
 
@@ -63,7 +64,7 @@
                   </div>
                 </div>
               </li>
-
+<!--Registrace nového uživatele-->
                <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Registrace</a>
               </li>

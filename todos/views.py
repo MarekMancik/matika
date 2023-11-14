@@ -3,10 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from todos.forms import RegistrationForm
 from todos.models import User
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 def index(request):
@@ -30,7 +32,7 @@ def registration_view(request):
             password = form.cleaned_data['password']
 
             # created a new user
-            user = User(
+            user = User.objects.create_user(
                 username=email,
                 first_name=first_name,
                 last_name=last_name,
@@ -38,7 +40,7 @@ def registration_view(request):
                 password=password,
                 # gender=gender
             )
-            user.save()
+            # user.save() # dont use, because create_user save the data automatic
 
             return render(request, 'success_registration.html', {'user': user})
     else:
@@ -46,3 +48,24 @@ def registration_view(request):
         form = RegistrationForm()
 
     return render(request, 'register.html', {'form': form})
+
+
+def login_user(request):
+    if request.method == 'POST':
+        user_email = request.POST.get('login_email')
+        user_password = request.POST.get('login_password')
+
+        print(f"email uživatele je: {user_email} a jeho heslo je {user_password}")
+        user = authenticate(request, username=user_email, password=user_password)
+
+        print(user)
+
+        if user is not None:
+            login(request, user)
+            print('úspěšné přihlášení')
+            return redirect('index.html/')
+
+        else:
+            print("špatný email, nebo heslo, zkuste to prosím znovu")
+
+    return render(request, 'index.html')
