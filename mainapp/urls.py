@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import mathapp
 from todos import views
+from mathapp.views import generate_math_examples
 from todos.views import registration_view
 
 urlpatterns = [
@@ -26,4 +28,5 @@ urlpatterns = [
     path('test_form/', views.test_form, name='test_form'),
     path('register/', views.registration_view, name='register'),
     path('login_user', views.login_user, name='login_user'),
+    path('math_examples/', mathapp.views.generate_math_examples, name='generate_math_examples'),
 ]
