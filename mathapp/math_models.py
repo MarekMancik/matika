@@ -2,17 +2,20 @@
 
 # I have to create math model for every case - +, -, x, :, generated random number in range 0-10,0-20,10-100,100-1000
 import random
+from typing import List
 
 
 class MathCase:
     @staticmethod
-    def addition(numeric_range_low, numeric_range_high):
-        while True:
+    def addition(count: int, numeric_range_low: int, numeric_range_high: int) -> list[str]:
+        examples = []
+        while len(examples) < count:
             a = random.randint(numeric_range_low, numeric_range_high)
             b = random.randint(numeric_range_low, numeric_range_high)
             if a + b <= numeric_range_high:
-                return f"{a}+{b} ="
+                examples.append(f"{a}+{b} =")
 
+        return examples
 
     @staticmethod
     def substraction(numeric_range_low, numeric_range_high):
@@ -61,7 +64,8 @@ class MathCase:
 #     i += 1
 #     print(multi_examples)
 
-for i in range(10):
-    divi_examples = MathCase.division(numeric_range_low=0, numeric_range_high=100)
-    i += 1
-    print(divi_examples)
+# for i in range(10):
+#     divi_examples = MathCase.division(numeric_range_low=0, numeric_range_high=100)
+#     i += 1
+#     print(divi_examples)
+

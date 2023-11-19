@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'todos',
+    'mathapp',
 ]
 
 MIDDLEWARE = [
