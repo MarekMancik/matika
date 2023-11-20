@@ -11,10 +11,16 @@
   <h1>
     příklady z matematika.cz
   </h1>
-    {% for example in examples %}
-    <p>{{ forloop.counter }}) {{ example }}</p>
-    {% endfor %}
+    <form method="post" action="{% url 'validation_math_examples' %}" autocomplete="off">
+      {% csrf_token %}
 
+        {% for example in examples %}
+        <p>{{ forloop.counter }}) {{ example }}
+        <input type="text" name="result" maxlength="3" size="1" required>
+        </p>
+        {% endfor %}
+      <button type="submit">Odeslat</button>
+    </form>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
