@@ -15,8 +15,9 @@
       {% csrf_token %}
 
         {% for example in examples %}
-        <p>{{ forloop.counter }}) {{ example }}
-        <input type="text" name="result" maxlength="3" size="1" required>
+        <p>{{ forloop.counter }}) {{ example }} =
+            <input type="hidden" name="example" value="{{ example }}">
+            <input type="text" name="result" maxlength="3" size="1" required>
         </p>
         {% endfor %}
       <button type="submit">Odeslat</button>

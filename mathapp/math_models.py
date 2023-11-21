@@ -13,7 +13,7 @@ class MathCase:
             a = random.randint(numeric_range_low, numeric_range_high)
             b = random.randint(numeric_range_low, numeric_range_high)
             if a + b <= numeric_range_high:
-                examples.append(f"{a}+{b} =")
+                examples.append(f"{a}+{b}")
 
         return examples
 
