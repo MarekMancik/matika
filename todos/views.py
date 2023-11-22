@@ -16,9 +16,9 @@ def index(request):
 
 
 def test_form(request):
-    button_response = request.POST.dict()
+    button_response = request.POST.getlist('button')
     print(f"Byla aktivována tato tlačítka: {button_response}")
-    return HttpResponse("Data byla přijata!")
+    return HttpResponse(f"Data byla přijata! {button_response}")
 
 
 def registration_view(request):

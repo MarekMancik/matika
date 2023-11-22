@@ -26,9 +26,7 @@ def validation_math_examples(request):
         print(f"Přijaté výsledky: {examples}{results},")
 
         # the union of two list
-        # for exampl, result in zip(examples, results):
-        #     print(exampl, result)
-        # validation of examples:
+
         for exampl, result in zip(examples, results):
 
             if eval(exampl) == int(result):
