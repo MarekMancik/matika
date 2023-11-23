@@ -12,7 +12,7 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
-    return render(request, template_name='index.html')
+    return render(request, template_name='buttons_page.html')
 
 
 def test_form(request):
@@ -63,10 +63,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             print('úspěšné přihlášení')
-            return redirect('index')
+            return redirect('base')
 
         else:
             print("špatný email, nebo heslo, zkuste to prosím znovu")
-            return redirect('index')
+            return redirect('base')
 
-    return render(request, 'index')
+    return render(request, 'base')
