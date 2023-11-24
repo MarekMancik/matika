@@ -10,10 +10,10 @@
 <body>
     {% extends 'base.html' %}
     {% block math_examples %}
-  <h3>
+  <h3 class="container mt-5">
     příklady:
   </h3>
-    <form method="post" action="{% url 'validation_math_examples' %}" autocomplete="off">
+    <form class="container" method="post" action="{% url 'validation_math_examples' %}" autocomplete="off">
       {% csrf_token %}
 
         {% for example in examples %}

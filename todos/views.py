@@ -17,8 +17,10 @@ def index(request):
 
 def test_form(request):
     button_response = request.POST.getlist('button')
+    range_values = request.POST.getlist('range')
     print(f"Byla aktivována tato tlačítka: {button_response}")
-    return HttpResponse(f"Data byla přijata! {button_response}")
+    print(f"Hodnoty range tlačítek jsou: {range_values}")
+    return HttpResponse(f"Data byla přijata! {button_response}, {range_values}")
 
 
 def registration_view(request):
