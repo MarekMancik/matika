@@ -15,14 +15,6 @@ def index(request):
     return render(request, template_name='buttons_page.html')
 
 
-def test_form(request):
-    button_response = request.POST.getlist('button')
-    range_values = request.POST.getlist('range')
-    print(f"Byla aktivována tato tlačítka: {button_response}")
-    print(f"Hodnoty range tlačítek jsou: {range_values}")
-    return HttpResponse(f"Data byla přijata! {button_response}, {range_values}")
-
-
 def registration_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)

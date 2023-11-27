@@ -9,7 +9,7 @@
 {% extends 'base.html' %}
 {% block buttons %}
 
-<form method="post" action="{% url 'test_form' %}">
+<form method="post" action="{% url 'buttons_response' %}">
 {% csrf_token %}
   <main class="mt-5">
     <div class="container">
@@ -36,38 +36,40 @@
       </div>
     </div>
   </main>
-<!--RANGE Butons-->
-  <main class="container text-center">
+
+<!--Number range buttons (the tag form for send is bellow) -->
+  <div class="container text-center col-2 mx-auto mt-1">
     <div class="row">
-    <div class="col-2 mx-auto">
-    <label for="customRange3" class="form-label">Example range</label>
-    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3" name="range" >
+      <select class="form-select" aria-label="Default select example" name="select_button_plus">
+        <option selected>kolik?</option>
+        <option value="1">5</option>
+        <option value="2">10</option>
+        <option value="3">15</option>
+        <option value="3">20</option>
+
+      </select>
+
     </div>
-    <div class="col-2 mx-auto">
-    <label for="customRange3" class="form-label">Example range</label>
-    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3" name="range" >
-    </div>
-    </div>
-  </main>
+  </div>
 
 
   <main class="mt-1">
 
       <div class="container text-center">
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="button" value="range_0-10">
+          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="button_2" value="range_0-10">
           <label class="btn btn-outline-primary" for="btncheck5">0-10</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="button" value="range_0-20">
+          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="button_2" value="range_0-20">
           <label class="btn btn-outline-primary" for="btncheck6">0-20</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" name="button" value="over_10">
+          <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" name="button_2" value="over_10">
           <label class="btn btn-outline-primary" for="btncheck7">&#10554 10</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="button" value="range_20-100">
+          <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="button_2" value="range_20-100">
           <label class="btn btn-outline-primary" for="btncheck8">20-100</label>
         </div>
         </div>
@@ -79,25 +81,8 @@
     <div class="container">
       <div class="row">
       <div class="container text-center">
-        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <div class="dropdown ">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              0
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">1</a></li>
-              <li><a class="dropdown-item" href="#">2</a></li>
-              <li><a class="dropdown-item" href="#">3</a></li>
-              <li><a class="dropdown-item" href="#">4</a></li>
-              <li><a class="dropdown-item" href="#">5</a></li>
-              <li><a class="dropdown-item" href="#">6</a></li>
-              <li><a class="dropdown-item" href="#">7</a></li>
-              <li><a class="dropdown-item" href="#">8</a></li>
-              <li><a class="dropdown-item" href="#">9</a></li>
-              <li><a class="dropdown-item" href="#">10</a></li>
-            </ul>
-          </div>
-        </div>
+
+
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
           <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
           <label class="btn btn-outline-primary" for="btncheck9">-</label>

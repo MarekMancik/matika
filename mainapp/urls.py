@@ -18,15 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 
 import mathapp
+import todos
 from todos import views
+from mathapp import views
 from mathapp.views import generate_math_examples
 from todos.views import registration_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='base'),
-    path('test_form/', views.test_form, name='test_form'),
-    path('register/', views.registration_view, name='register'),
-    path('login_user/', views.login_user, name='login_user'),
+    path('', todos.views.index, name='base'),
+    path('buttons_response/', views.buttons_response, name='buttons_response'),
+    path('register/', todos.views.registration_view, name='register'),
+    path('login_user/', todos.views.login_user, name='login_user'),
     path('mathapp/', include('mathapp.urls')),
 ]
