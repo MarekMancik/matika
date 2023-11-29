@@ -9,7 +9,7 @@
 {% extends 'base.html' %}
 {% block buttons %}
 
-<form method="post" action="{% url 'buttons_response' %}">
+<form method="post" action="{% url 'generate_math_examples' %}">
 {% csrf_token %}
   <main class="mt-5">
     <div class="container">

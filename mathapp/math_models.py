@@ -18,7 +18,7 @@ class MathCase:
         return examples
 
     @staticmethod
-    def substraction(numeric_range_low, numeric_range_high):
+    def substraction(count, numeric_range_low, numeric_range_high):
         a = random.randint(numeric_range_low, numeric_range_high)
         b = random.randint(numeric_range_low, numeric_range_high)
         if a > b:
@@ -30,7 +30,7 @@ class MathCase:
 
 
     @staticmethod
-    def multiplication(numeric_range_low, numeric_range_high):
+    def multiplication(count, numeric_range_low, numeric_range_high):
         while True:
             a = random.randint(numeric_range_low, numeric_range_high/10)
             b = random.randint(numeric_range_low, numeric_range_high/10)
@@ -40,7 +40,7 @@ class MathCase:
 
 
     @staticmethod
-    def division(numeric_range_low, numeric_range_high):
+    def division(count, numeric_range_low, numeric_range_high):
         while True:
             a = random.randint(numeric_range_low, numeric_range_high)
             b = random.randint(numeric_range_low, numeric_range_high/10)

@@ -49,8 +49,8 @@ def get_numeric_range(tuple_of_numeric_range):
             return "0-100"
 
 
-def get_math_operation(tuple_of_math_operations, result_of_get_numeric_range, result_of_get_number_of_examples):
-    # math operations are [0] element of buttons_response(request)
+def get_math_examples(tuple_of_math_operations, result_of_get_numeric_range, result_of_get_number_of_examples):
+    # math examples - count solve here
 
     # 1.get range of example
     num_range = result_of_get_numeric_range.split('-')  # num_range is List with two values
@@ -64,34 +64,43 @@ def get_math_operation(tuple_of_math_operations, result_of_get_numeric_range, re
     count_krat = result_of_get_number_of_examples[2]
     count_deleno = result_of_get_number_of_examples[3]
 
-
-
     # 3. look at the type of math operations
     for math_operation in tuple_of_math_operations:
         # musím se podívat do tuplu, které mat. funkce uživatel zvolil
         if math_operation == "plus":
             MathCase.addition(count=count_plus, numeric_range_low=num_low, numeric_range_high=num_high)
         elif math_operation == "minus":
-            pass
+            MathCase.substraction(count=count_minus, numeric_range_low=num_low, numeric_range_high=num_high)
         elif math_operation == "krat":
-            pass
+            MathCase.multiplication(count=count_krat, numeric_range_low=num_low, numeric_range_high=num_high)
         elif math_operation == "deleno":
-            pass
-
-
+            MathCase.division(count=count_deleno, numeric_range_low=num_low, numeric_range_high=num_high)
 
 
 def generate_math_examples(request):
-    # receive a requirement regarding generating of math examples - typ, range, count
-    if request.method == "POST":
-        addition_example = MathCase.addition(count=5, numeric_range_low=0, numeric_range_high=20)
-        print(f"Obsah listu na začátku:{addition_example}")
 
-        # place for mathematic examples
-        math_examples = {"examples": addition_example}
-        # print(math_examples)
+    print(f"výpis buttons response {buttons_response(request)}")
+    response = buttons_response(request)
+    count_plus = response[1][0]
+    print(f"[1] prvek response: {count_plus}")
+    addition_example = [10, 15, 7, 8, 9, 12, 113]
+    math_examples = {"examples": addition_example}
 
-        return render(request, "math_examples.html", context=math_examples)
+    return render(request, "math_examples.html", context=math_examples)
+
+
+
+# def generate_math_examples(request):
+#     # receive a requirement regarding generating of math examples - typ, range, count
+#     if request.method == "POST":
+#         addition_example = MathCase.addition(count=5, numeric_range_low=0, numeric_range_high=20)
+#         print(f"Obsah listu na začátku:{addition_example}")
+#
+#         # place for mathematic examples
+#         math_examples = {"examples": addition_example}
+#         # print(math_examples)
+#
+#         return render(request, "math_examples.html", context=math_examples)
 
 
 
