@@ -6,6 +6,12 @@ from mathapp.math_models import MathCase
 
 def buttons_response(request):
     # request from buttons
+    dict_buttons_response = request.POST.items()
+    print(f"položka item() vypadá: {dict_buttons_response}")
+
+    for key, value in dict_buttons_response:
+        print(f"key:{key}, value:{value}")
+
     math_operation_buttons = request.POST.getlist('button')
     number_of_examples_plus = request.POST.getlist('select_button_plus')
     number_of_examples_minus = request.POST.getlist('select_button_minus')
@@ -18,14 +24,15 @@ def buttons_response(request):
     print(f"počet příkladů: {number_of_examples_plus}")
     print(f"další tlačítka:{numeric_range}")
 
-    return math_operation_buttons,\
-        number_of_examples_plus,\
-        number_of_examples_minus,\
-        number_of_examples_krat,\
-        number_of_examples_deleno,\
+    return math_operation_buttons, \
+        number_of_examples_plus, \
+        number_of_examples_minus, \
+        number_of_examples_krat, \
+        number_of_examples_deleno, \
         numeric_range
 
     # return HttpResponse(f"Data byla přijata! {math_operation_buttons}, {number_of_examples}, {numeric_range}")
+
 
 def get_number_of_examples(tuple_of_plus, tuple_of_minus, tuple_of_krat, tuple_of_deleno):
     # reading select buttons for count of examples from tuple. Every tuple has only one value!!!
@@ -78,16 +85,26 @@ def get_math_examples(tuple_of_math_operations, result_of_get_numeric_range, res
 
 
 def generate_math_examples(request):
-
     print(f"výpis buttons response {buttons_response(request)}")
+
+    # aktivace funkce buttons_response() s parametrem request, výsledkem je tuple všech aktivních tlačítek
     response = buttons_response(request)
+
+    # počet příkladů pro jednotlivé mat. operace
+    resp = get_number_of_examples()
+    num_plus, num_minus, num_krat, num_deleno = resp[1], resp[2], resp[3], resp[4]
+
+    # spuštění funkce pro určení číselného oboru get_numeric_range()
+
+    response = buttons_response(request)
+
     count_plus = response[1][0]
     print(f"[1] prvek response: {count_plus}")
+
     addition_example = [10, 15, 7, 8, 9, 12, 113]
     math_examples = {"examples": addition_example}
 
     return render(request, "math_examples.html", context=math_examples)
-
 
 
 # def generate_math_examples(request):
@@ -101,7 +118,6 @@ def generate_math_examples(request):
 #         # print(math_examples)
 #
 #         return render(request, "math_examples.html", context=math_examples)
-
 
 
 def validation_math_examples(request):
@@ -121,6 +137,3 @@ def validation_math_examples(request):
                 print(exampl, result, "NOK")
 
         return render(request, 'validation_math_examples.html')
-
-
-
