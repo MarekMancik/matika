@@ -6,32 +6,53 @@ from mathapp.math_models import MathCase
 
 def buttons_response(request):
     # request from buttons
-    dict_buttons_response = request.POST.items()
-    print(f"položka item() vypadá: {dict_buttons_response}")
+    button_plus = request.POST.get("button_plus")
+    button_minus = request.POST.get("button_minus")
+    button_krat = request.POST.get("button_krat")
+    button_deleno = request.POST.get("button_deleno")
 
-    for key, value in dict_buttons_response:
-        print(f"key:{key}, value:{value}")
+    select_button_plus = request.POST.get("select_button_plus")
+    select_button_minus = request.POST.get("select_button_minus")
+    select_button_krat = request.POST.get("select_button_krat")
+    select_button_deleno = request.POST.get("select_button_deleno")
 
-    math_operation_buttons = request.POST.getlist('button')
-    number_of_examples_plus = request.POST.getlist('select_button_plus')
-    number_of_examples_minus = request.POST.getlist('select_button_minus')
-    number_of_examples_krat = request.POST.getlist('select_button_krat')
-    number_of_examples_deleno = request.POST.getlist('select_button_deleno')
-    numeric_range = request.POST.getlist('button_2')
+    button_range = request.POST.get("button_range")
 
-    # control print
-    print(f"Byla aktivována tato tlačítka: {math_operation_buttons}")
-    print(f"počet příkladů: {number_of_examples_plus}")
-    print(f"další tlačítka:{numeric_range}")
+    button_over_10 = request.POST.get("button_over_10")
 
-    return math_operation_buttons, \
-        number_of_examples_plus, \
-        number_of_examples_minus, \
-        number_of_examples_krat, \
-        number_of_examples_deleno, \
-        numeric_range
+    # zjištění range
+    range_value = None
+    match range:
+        case "range_0-10":
+            range_value = (0, 10)
+        case "range_0-20":
+            range_value = (0, 20)
+        case "range_0-100":
+            range_value = (0, 100)
+
+    # zjištění počtu příkladů pro jednotlivé mat. operace - získám přímo z request
+
+    # vyhodnocení mat. operací
+
+    match math_operation:
+        case "plus":
+            MathCase.addition(count=select_button_plus, numeric_range_low=range_value[0], numeric_range_high=range_value[1])
+        case "minus":
+            MathCase.substraction(count=select_button_minus, numeric_range_low=range_value[0], numeric_range_high=range_value[1])
+        case "krat":
+            MathCase.multiplication(count=select_button_krat, numeric_range_low=range_value[0], numeric_range_high=range_value[1])
 
     # return HttpResponse(f"Data byla přijata! {math_operation_buttons}, {number_of_examples}, {numeric_range}")
+
+def get_range(range):
+    range_value = None
+    match range:
+        case "range_0-10": range_value = (0, 10)
+        case "range_0-20": range_value = (0, 20)
+        case "range_0-100": range_value = (0, 100)
+    return range_value
+
+
 
 
 def get_number_of_examples(tuple_of_plus, tuple_of_minus, tuple_of_krat, tuple_of_deleno):

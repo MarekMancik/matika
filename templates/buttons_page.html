@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Buttons Page</title>
 </head>
 
@@ -81,21 +82,21 @@
   <main class="mt-1">
 
       <div class="container text-center">
-        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" name="button_0-10" value="range_0-10">
+        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" id="btncheck5" autocomplete="off" name="button_range" value="range_0-10">
           <label class="btn btn-outline-primary" for="btncheck5">0-10</label>
         </div>
-        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" name="button_0-20" value="range_0-20">
+        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" id="btncheck6" autocomplete="off" name="button_range" value="range_0-20">
           <label class="btn btn-outline-primary" for="btncheck6">0-20</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
           <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off" name="button_over_10" value="over_10">
           <label class="btn btn-outline-primary" for="btncheck7">&#10554 10</label>
         </div>
-        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off" name="button_0-10" value="range_0-100">
-          <label class="btn btn-outline-primary" for="btncheck8">20-100</label>
+        <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" id="btncheck8" autocomplete="off" name="button_range" value="range_0-100">
+          <label class="btn btn-outline-primary" for="btncheck8">0-100</label>
         </div>
         </div>
 
@@ -142,6 +143,20 @@
     <button type="submit">testovací tlačitko</button>
   </form>
 {% endblock %}
+
+<script>
+    const rangeButtons = document.querySelectorAll('.btn-check');
+
+    rangeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            rangeButtons.forEach(otherButton => {
+                if (otherButton !== button) {
+                    otherButton.disabled = !otherButton.disabled;
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
