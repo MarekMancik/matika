@@ -99,13 +99,13 @@ def validation_math_examples(request):
         print(f"Přijaté výsledky: {examples}{results},")
 
         # the union of two list
+        val_examples = []
         for exampl, result in zip(examples, results):
-            val_examples = []
             if eval(exampl) == int(result):
                 val_examples.append(f"{exampl} = {result} OK")
             else:
                 val_examples.append(f"{exampl} = {result} NOK")
-            validation_examples = {"validation_math_examples": val_examples}
-            print(val_examples)
-            print(validation_examples)
+        validation_examples = {"validation_math_examples": val_examples}
+        print(val_examples)
+        print(validation_examples)
         return render(request, 'validation_math_examples.html', context=validation_examples)

@@ -9,29 +9,19 @@
 <body>
     {% extends 'base.html' %}
     {% block validation_math_examples %}
-        <h3 class="container mt-5">Kontrola výsledků</h3>
-            <div class="container">
+        <h3 class="container mt-5">Kontrola výsledků:</h3>
+        <div class="container">
           <div class="row">
             <div class="col">
-              {% for example in val_examples %}
+              {% for example in validation_math_examples %}
                 <p>
                     {{ forloop.counter }}) {{ example }}
                 </p>
               {% endfor %}
             </div>
-            <div class="col">
-              {% for example in examples_minus %}
-                <p>{{ forloop.counter }}) {{ example }} =
-                    <input type="hidden" name="example" value="{{ example }}">
-                    <input type="text" name="result" maxlength="3" size="1" required>
-                </p>
-              {% endfor %}
-            </div>
-            <div class="col">
-              Column
-            </div>
-          </div>
+
         </div>
+       </div>
     {% endblock %}
 </body>
 </html>
