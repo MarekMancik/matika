@@ -10,7 +10,7 @@
 {% extends 'base.html' %}
 {% block buttons %}
 
-<form method="post" action="{% url 'generate_math_examples' %}">
+<form method="post" action="{% url 'buttons_response' %}">
 {% csrf_token %}
   <main class="mt-5">
     <div class="container">
@@ -39,45 +39,52 @@
   </main>
 
 <!--Number range buttons (the tag form for send is bellow) -->
-  <div class="container text-center col-2 mx-auto mt-1">
-    <div class="row">
-      <div class="container text-center mt-3">
-        <select class="form-select" aria-label="Default select example" name="select_button_plus">
-          <option selected>kolik?</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
+  <div class="row">
 
-        <select class="form-select" aria-label="Default select example" name="select_button_minus">
-          <option selected>kolik?</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
 
-        <select class="form-select" aria-label="Default select example" name="select_button_krat">
-          <option selected>kolik?</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
+    <div class="container text-center mt-1">
+<!--      <div class="container text-center mt-3">-->
+        <div class="btn-group">
 
-        <select class="form-select" aria-label="Default select example" name="select_button_deleno">
-          <option selected>kolik?</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
+        <div class="col">
+          <select class="form-select btn-block" aria-label="Default select example" name="select_button_plus">
+            <option selected>5</option>
+            <option value=5>10</option>
+            <option value=10>15</option>
+            <option value=15>20</option>
+          </select>
+        </div>
 
+        <div class="col">
+          <select class="form-select btn-block" aria-label="Default select example" name="select_button_minus">
+            <option selected>5</option>
+            <option value=10>10</option>
+            <option value=15>15</option>
+            <option value=20>20</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <select class="form-select btn-block" aria-label="Default select example" name="select_button_krat">
+            <option selected>5</option>
+            <option value=10>10</option>
+            <option value=15>15</option>
+            <option value=20>20</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <select class="form-select btn-block" aria-label="Default select example" name="select_button_deleno">
+            <option selected>5</option>
+            <option value=10>10</option>
+            <option value=15>15</option>
+            <option value=20>20</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-
+  </div>
 
   <main class="mt-1">
 
@@ -87,7 +94,7 @@
           <label class="btn btn-outline-primary" for="btncheck5">0-10</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic radio toggle button group">
-          <input type="radio" class="btn-check" id="btncheck6" autocomplete="off" name="button_range" value="range_0-20">
+          <input type="radio" class="btn-check" id="btncheck6" autocomplete="off" name="button_range" value="range_0-20" checked>
           <label class="btn btn-outline-primary" for="btncheck6">0-20</label>
         </div>
         <div class="btn-group col-2 mx-auto" role="group" aria-label="Basic checkbox toggle button group">
@@ -126,7 +133,7 @@
       </div>
 
   </main>
-
+<!--Odesílací tlačítko-->
   <div class="container text-center col-2 mx-auto mt-2">
     <div class="row">
 <!--      <button class="btn-group col-1 m-2" type="submit">Odeslat</button>-->
@@ -137,11 +144,7 @@
 
 </form>
 
-<!-- testovací extra tlačítko-->
-  <form method="post" action="{% url 'generate_math_examples' %}">
-    {% csrf_token %}
-    <button type="submit">testovací tlačitko</button>
-  </form>
+
 {% endblock %}
 
 <script>

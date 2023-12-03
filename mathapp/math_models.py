@@ -18,16 +18,16 @@ class MathCase:
         return examples
 
     @staticmethod
-    def substraction(count, numeric_range_low, numeric_range_high):
-        a = random.randint(numeric_range_low, numeric_range_high)
-        b = random.randint(numeric_range_low, numeric_range_high)
-        if a > b:
-            return f"{a}-{b} ="
-        else:
-            a = b
-            b = a
-            return f"{a}-{b} ="
-
+    def substraction(count: int, numeric_range_low: int, numeric_range_high: int):
+        examples = []
+        while len(examples) < count:
+            a = random.randint(numeric_range_low, numeric_range_high)
+            b = random.randint(numeric_range_low, numeric_range_high)
+            if a > b:
+                examples.append(f"{a}-{b}")
+            else:
+                examples.append(f"{b}-{a}")
+        return examples
 
     @staticmethod
     def multiplication(count, numeric_range_low, numeric_range_high):

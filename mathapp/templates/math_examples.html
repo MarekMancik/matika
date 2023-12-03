@@ -16,7 +16,14 @@
     <form class="container" method="post" action="{% url 'validation_math_examples' %}" autocomplete="off">
       {% csrf_token %}
 
-        {% for example in examples %}
+        {% for example in examples_plus %}
+        <p>{{ forloop.counter }}) {{ example }} =
+            <input type="hidden" name="example" value="{{ example }}">
+            <input type="text" name="result" maxlength="3" size="1" required>
+        </p>
+        {% endfor %}
+
+        {% for example in examples_minus %}
         <p>{{ forloop.counter }}) {{ example }} =
             <input type="hidden" name="example" value="{{ example }}">
             <input type="text" name="result" maxlength="3" size="1" required>
