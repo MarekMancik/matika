@@ -31,6 +31,7 @@ def buttons_response(request):
             low, high = 0, 100
 
     print(f"Kontrolní výpis, hodnota rozsahu: {low} a {high}")
+
     math_examples = {}
     # výpočet plus.
     if button_plus == "plus":
@@ -98,12 +99,13 @@ def validation_math_examples(request):
         print(f"Přijaté výsledky: {examples}{results},")
 
         # the union of two list
-
         for exampl, result in zip(examples, results):
-
+            val_examples = []
             if eval(exampl) == int(result):
-                print(exampl, result, "OK")
+                val_examples.append(f"{exampl} = {result} OK")
             else:
-                print(exampl, result, "NOK")
-
-        return render(request, 'validation_math_examples.html')
+                val_examples.append(f"{exampl} = {result} NOK")
+            validation_examples = {"validation_math_examples": val_examples}
+            print(val_examples)
+            print(validation_examples)
+        return render(request, 'validation_math_examples.html', context=validation_examples)

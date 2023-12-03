@@ -31,13 +31,15 @@ class MathCase:
 
     @staticmethod
     def multiplication(count, numeric_range_low, numeric_range_high):
-        while True:
+        examples = []
+        while len(examples) < count:
             a = random.randint(numeric_range_low, numeric_range_high/10)
             b = random.randint(numeric_range_low, numeric_range_high/10)
-            if (a*b) != 0 and a != 1 and b != 1:
-                return f"{a}x{b}="
+            if a < 10 and b < 10:
+                if (a*b) != 0 and a != 1 and b != 1:
+                    examples.append(f"{a}x{b}")
 
-
+        return examples
 
     @staticmethod
     def division(count, numeric_range_low, numeric_range_high):
