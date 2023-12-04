@@ -19,22 +19,33 @@
           <div class="row">
             <div class="col">
               {% for example in examples_plus %}
-                <p>{{ forloop.counter }}) {{ example }} =
-                    <input type="hidden" name="example" value="{{ example }}">
-                    <input type="text" name="result" maxlength="3" size="1" required>
-                </p>
+                {% if forloop.counter <= 10 %}
+                    <p>{{ forloop.counter }}) {{ example }} =
+                        <input type="hidden" name="example" value="{{ example }}">
+                        <input type="text" name="result" maxlength="3" size="1" required>
+                    </p>
+                {% endif %}
               {% endfor %}
             </div>
             <div class="col">
-              {% for example in examples_minus %}
-                <p>{{ forloop.counter }}) {{ example }} =
-                    <input type="hidden" name="example" value="{{ example }}">
-                    <input type="text" name="result" maxlength="3" size="1" required>
-                </p>
+              {% for example in examples_plus %}
+                {% if forloop.counter > 10 %}
+                    <p>{{ forloop.counter0|add:10 }}) {{ example }} =
+                        <input type="hidden" name="example" value="{{ example }}">
+                        <input type="text" name="result" maxlength="3" size="1" required>
+                    </p>
+                {% endif %}
               {% endfor %}
             </div>
             <div class="col">
-              Column
+              {% for example in examples_plus %}
+                {% if forloop.counter > 10 %}
+                    <p>{{ forloop.counter0|add:10 }}) {{ example }} =
+                        <input type="hidden" name="example" value="{{ example }}">
+                        <input type="text" name="result" maxlength="3" size="1" required>
+                    </p>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
