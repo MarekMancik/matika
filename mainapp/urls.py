@@ -21,7 +21,7 @@ import mathapp
 import todos
 from todos import views
 from mathapp import views
-from mathapp.views import generate_math_examples
+
 from todos.views import registration_view
 
 urlpatterns = [

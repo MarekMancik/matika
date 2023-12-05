@@ -15,22 +15,22 @@
   </h3>
     <form class="container" method="post" action="{% url 'validation_math_examples' %}" autocomplete="off">
       {% csrf_token %}
-        <div class="container">
+        <div class="container-sm">
           <div class="row">
             <div class="col">
-              {% for example in examples_plus %}
+              {% for example in examples %}
                 {% if forloop.counter <= 10 %}
                     <p>{{ forloop.counter }}) {{ example }} =
                         <input type="hidden" name="example" value="{{ example }}">
-                        <input type="text" name="result" maxlength="3" size="1" required>
+                        <input type="text" name="result" maxlength="3" size="1" required ">
                     </p>
                 {% endif %}
               {% endfor %}
             </div>
             <div class="col">
-              {% for example in examples_plus %}
-                {% if forloop.counter > 10 %}
-                    <p>{{ forloop.counter0|add:10 }}) {{ example }} =
+              {% for example in examples %}
+                {% if forloop.counter > 10 and forloop.counter <= 20 %}
+                    <p>{{ forloop.counter|add:0 }}) {{ example }} =
                         <input type="hidden" name="example" value="{{ example }}">
                         <input type="text" name="result" maxlength="3" size="1" required>
                     </p>
@@ -38,9 +38,9 @@
               {% endfor %}
             </div>
             <div class="col">
-              {% for example in examples_plus %}
-                {% if forloop.counter > 10 %}
-                    <p>{{ forloop.counter0|add:10 }}) {{ example }} =
+              {% for example in examples %}
+                {% if forloop.counter > 20 %}
+                    <p>{{ forloop.counter|add:0 }}) {{ example }} =
                         <input type="hidden" name="example" value="{{ example }}">
                         <input type="text" name="result" maxlength="3" size="1" required>
                     </p>
