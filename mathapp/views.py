@@ -6,6 +6,7 @@ from mathapp.math_models import MathCase
 
 def buttons_response(request):
     # request from buttons
+
     button_plus = request.POST.get("button_plus")
     button_minus = request.POST.get("button_minus")
     button_krat = request.POST.get("button_krat")
@@ -51,8 +52,12 @@ def buttons_response(request):
 
     print(math_examples)
 
-    examples.extend(examples_plus)
-    examples.extend(examples_minus)
+    if 'examples_plus' in locals() and examples_plus is not None:
+        examples.extend(examples_plus)
+
+    if 'examples_minus' in locals() and examples_minus is not None:
+        examples.extend(examples_minus)
+
     print(f"list příkladů: {examples}")
     math_examples.update({"examples": examples})
     print(f"Dictionary příkazů: {math_examples}")
@@ -79,3 +84,10 @@ def validation_math_examples(request):
         print(validation_examples)
         return render(request, 'validation_math_examples.html', context=validation_examples)
         # return render(request, 'math_examples.html', context=validation_examples)
+
+
+def generate_math_examples(request):
+    pass
+
+
+

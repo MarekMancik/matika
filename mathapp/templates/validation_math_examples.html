@@ -5,20 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Validation math examples</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .correct-answer {
+        color: green;
+        }
+
+        .incorrect-answer {
+        color: red;
+        }
+    </style>
 </head>
 <body>
+    <h3 class="container mt-5">
+    Kontrola:
+    </h3>
     {% extends 'base.html' %}
     {% block validation_math_examples %}
-        <h3 class="container mt-5">Kontrola výsledků:</h3>
-        <div class="container">
+    <div class="container-sm">
           <div class="row">
             <div class="col">
               {% for example in validation_math_examples %}
-                <p>
-                    {{ forloop.counter }}) {{ example }}
-                </p>
+                {% if forloop.counter <= 10 %}
+                   {% if "NOK" in example %}
+                    <p class="incorrect-answer">
+                        {{ forloop.counter }}) {{ example }}
+<!--                        <input type="hidden" name="example" value="{{ example }}">-->
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                    {% elif "OK" in example %}
+                    <p class="correct-answer">
+                        {{ forloop.counter }}) {{ example }}
+                        <input type="hidden" name="example" value="{{ example }}">
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                {% endif %}
+                {% endif %}
               {% endfor %}
             </div>
+            <div class="col">
+              {% for example in validation_math_examples %}
+                {% if forloop.counter > 10 and forloop.counter <= 20 %}
+                   {% if "NOK" in example %}
+                    <p class="incorrect-answer">
+                        {{ forloop.counter }}) {{ example }}
+<!--                        <input type="hidden" name="example" value="{{ example }}">-->
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                    {% elif "OK" in example %}
+                    <p class="correct-answer">
+                        {{ forloop.counter }}) {{ example }}
+                        <input type="hidden" name="example" value="{{ example }}">
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="col">
+              {% for example in validation_math_examples %}
+                {% if forloop.counter > 20 %}
+                    {% if "NOK" in example %}
+                    <p class="incorrect-answer">
+                        {{ forloop.counter }}) {{ example }}
+<!--                        <input type="hidden" name="example" value="{{ example }}">-->
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                    {% elif "OK" in example %}
+                    <p class="correct-answer">
+                        {{ forloop.counter }}) {{ example }}
+                        <input type="hidden" name="example" value="{{ example }}">
+<!--                        <input type="text" name="result" maxlength="3" size="1" required ">-->
+                    </p>
+                {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
 
         </div>
        </div>
