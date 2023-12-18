@@ -50,6 +50,11 @@ def buttons_response(request):
         examples_minus = MathCase.substraction(count=count_button_minus, numeric_range_low=low, numeric_range_high=high)
         # math_examples.update({"examples_minus": examples_minus})
 
+    if button_krat == "krat":
+        count_button_krat = int(count_button_krat)
+        print(f"Počet příkladů krat: {count_button_krat}")
+        examples_krat = MathCase.multiplication(count=count_button_krat, numeric_range_low=low, numeric_range_high=high)
+
     print(math_examples)
 
     if 'examples_plus' in locals() and examples_plus is not None:
@@ -58,11 +63,17 @@ def buttons_response(request):
     if 'examples_minus' in locals() and examples_minus is not None:
         examples.extend(examples_minus)
 
+    if 'examples_krat' in locals() and examples_krat is not None:
+        examples.extend(examples_krat)
+
     print(f"list příkladů: {examples}")
     math_examples.update({"examples": examples})
     print(f"Dictionary příkazů: {math_examples}")
     # complete examples send to math_examples.html
     return render(request, "math_examples.html", context=math_examples)
+
+
+
 
 
 def validation_math_examples(request):
