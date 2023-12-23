@@ -42,7 +42,6 @@ def buttons_response(request):
         examples_plus = MathCase.addition(count=count_button_plus, numeric_range_low=low, numeric_range_high=high)
         # math_examples.update({"examples_plus": examples_plus})
 
-
     # výpočet pro mínus
     if button_minus == "minus":
         count_button_minus = int(count_button_minus)
@@ -55,6 +54,11 @@ def buttons_response(request):
         print(f"Počet příkladů krat: {count_button_krat}")
         examples_krat = MathCase.multiplication(count=count_button_krat, numeric_range_low=low, numeric_range_high=high)
 
+    if button_deleno == "deleno":
+        count_button_deleno = int(count_button_deleno)
+        print(f"Počet příkladů děleno: {count_button_deleno}")
+        examples_deleno = MathCase.division(count=count_button_deleno, numeric_range_low=low, numeric_range_high=high)
+        print(f"Příklady děleno: {examples_deleno}")
     print(math_examples)
 
     if 'examples_plus' in locals() and examples_plus is not None:
@@ -66,14 +70,14 @@ def buttons_response(request):
     if 'examples_krat' in locals() and examples_krat is not None:
         examples.extend(examples_krat)
 
+    if 'examples_deleno' in locals() and examples_deleno is not None:
+        examples.extend(examples_deleno)
+
     print(f"list příkladů: {examples}")
     math_examples.update({"examples": examples})
     print(f"Dictionary příkazů: {math_examples}")
     # complete examples send to math_examples.html
     return render(request, "math_examples.html", context=math_examples)
-
-
-
 
 
 def validation_math_examples(request):
@@ -85,11 +89,37 @@ def validation_math_examples(request):
 
         # the union of two list
         val_examples = []
-        for exampl, result in zip(examples, results):
-            if eval(exampl) == int(result):
-                val_examples.append(f"{exampl} = {result} OK")
+        reformat_examples = []
+        for example in examples:
+            if "x" in example:
+                example = example.replace("x", "*")
+                reformat_examples.append(example)
+                print(examples)
+            elif ":" in example:
+                example = example.replace(":", "/")
+                reformat_examples.append(example)
+                print(examples)
+
             else:
-                val_examples.append(f"{exampl} = {result} NOK")
+                reformat_examples.append(example)
+                print(examples)
+
+        for exampl, result in zip(reformat_examples, results):
+            if eval(exampl) == int(result):
+                if "*" in exampl:
+                    exampl = exampl.replace("*", "x")
+                    val_examples.append(f"{exampl} = {result} OK")
+                elif "/" in exampl:
+                    exampl = exampl.replace("/", ":")
+                    val_examples.append(f"{exampl} = {result} OK")
+            else:
+                if "*" in exampl:
+                    exampl = exampl.replace("*", "x")
+                    val_examples.append(f"{exampl} = {result} NOK")
+                elif "/" in exampl:
+                    exampl = exampl.replace("/", ":")
+                    val_examples.append(f"{exampl} = {result} NOK")
+
         validation_examples = {"validation_math_examples": val_examples}
         print(val_examples)
         print(validation_examples)
@@ -99,6 +129,3 @@ def validation_math_examples(request):
 
 def generate_math_examples(request):
     pass
-
-
-

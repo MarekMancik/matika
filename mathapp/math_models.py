@@ -44,23 +44,25 @@ class MathCase:
         return examples
 
     @staticmethod
-    def multiplication(count, numeric_range_low, numeric_range_high):
+    def multiplication(count: int, numeric_range_low: int, numeric_range_high: int):
         if numeric_range_low == 0 and numeric_range_high == 100:
             examples = []
             numbers = random.sample(my_numbers, count)
             for one_numbers in numbers:
-                examples.append(f"{one_numbers[0]}*{one_numbers[1]}")
+                examples.append(f"{one_numbers[0]}x{one_numbers[1]}")
 
             return examples
 
     @staticmethod
-    def division(count, numeric_range_low, numeric_range_high):
-        while True:
-            a = random.randint(numeric_range_low, numeric_range_high)
-            b = random.randint(numeric_range_low, numeric_range_high/10)
-            if b != 0 and a != 0 and b != 1 and a <= b*10:
-                if (a % b) == 0:
-                    return f"{a}:{b}="
+    def division(count: int, numeric_range_low: int, numeric_range_high: int):
+        if numeric_range_low == 0 and numeric_range_high == 100:
+            examples = []
+            numbers = random.sample(my_numbers, count)
+            for one_number in numbers:
+                dividing_number = one_number[0] * one_number[1]
+                examples.append(f"{dividing_number}:{one_number[1]}")
+            return examples
+
 
 
 # for i in range(10):
@@ -79,7 +81,7 @@ class MathCase:
 #     print(multi_examples)
 
 # for i in range(10):
-#     divi_examples = MathCase.division(numeric_range_low=0, numeric_range_high=100)
+#     divi_examples = MathCase.division(count=10, numeric_range_low=0, numeric_range_high=100)
 #     i += 1
 #     print(divi_examples)
 
