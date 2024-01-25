@@ -102,7 +102,7 @@ def validation_math_examples(request):
 
             else:
                 reformat_examples.append(example)
-                print(examples)
+                print(f"Příklad plus/minus:{examples}")
 
         for exampl, result in zip(reformat_examples, results):
             if eval(exampl) == int(result):
@@ -112,6 +112,9 @@ def validation_math_examples(request):
                 elif "/" in exampl:
                     exampl = exampl.replace("/", ":")
                     val_examples.append(f"{exampl} = {result} OK")
+                else:
+                    val_examples.append(f"{exampl} = {result} OK")
+
             else:
                 if "*" in exampl:
                     exampl = exampl.replace("*", "x")
@@ -119,6 +122,9 @@ def validation_math_examples(request):
                 elif "/" in exampl:
                     exampl = exampl.replace("/", ":")
                     val_examples.append(f"{exampl} = {result} NOK")
+                else:
+                    val_examples.append(f"{exampl} = {result} NOK")
+
 
         validation_examples = {"validation_math_examples": val_examples}
         print(val_examples)
