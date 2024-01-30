@@ -30,6 +30,9 @@ def buttons_response(request):
             low, high = 0, 20
         elif button_range == "range_0-100":
             low, high = 0, 100
+        elif button_range == "range_0-50":
+            low, high = 0, 50
+
 
     print(f"Kontrolní výpis, hodnota rozsahu: {low} a {high}")
 
@@ -40,14 +43,16 @@ def buttons_response(request):
         count_button_plus = int(count_button_plus)
         print(f"Počet příkladů plus: {count_button_plus}")
         examples_plus = MathCase.addition(count=count_button_plus, numeric_range_low=low, numeric_range_high=high)
-        # math_examples.update({"examples_plus": examples_plus})
+
 
     # výpočet pro mínus
     if button_minus == "minus":
         count_button_minus = int(count_button_minus)
         print(f"Počet příkladů mínus: {count_button_minus}")
         examples_minus = MathCase.substraction(count=count_button_minus, numeric_range_low=low, numeric_range_high=high)
-        # math_examples.update({"examples_minus": examples_minus})
+
+    # výpočet plus jednociferným druhým číslem
+
 
     if button_krat == "krat":
         count_button_krat = int(count_button_krat)

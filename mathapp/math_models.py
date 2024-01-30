@@ -43,6 +43,7 @@ class MathCase:
                 examples.append(f"{b}-{a}")
         return examples
 
+
     @staticmethod
     def multiplication(count: int, numeric_range_low: int, numeric_range_high: int):
         if numeric_range_low == 0 and numeric_range_high == 100:
