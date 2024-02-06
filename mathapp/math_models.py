@@ -64,7 +64,25 @@ class MathCase:
                 examples.append(f"{dividing_number}:{one_number[1]}")
             return examples
 
+    @staticmethod
+    def addition_50(count: int, numeric_range_low: int, numeric_range_high: int):
+        examples = []
+        while len(examples) < count:
+            a = random.randint(numeric_range_low, numeric_range_high)
+            b = random.randint(1, 10)
+            if a + b <= 50:
+                examples.append(f"{a}+{b}")
 
+        return examples
+
+    @staticmethod
+    def substraction_50(count: int, numeric_range_low: int, numeric_range_high: int):
+        examples = []
+        while len(examples) < count:
+            a = random.randint(numeric_range_low, numeric_range_high)
+            b = random.randint(1, 10)
+            examples.append(a - b)
+        return examples
 
 # for i in range(10):
 #     add_examples = MathCase.addition(numeric_range_low=0, numeric_range_high=20)

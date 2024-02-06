@@ -30,8 +30,8 @@ def buttons_response(request):
             low, high = 0, 20
         elif button_range == "range_0-100":
             low, high = 0, 100
-        elif button_range == "range_0-50":
-            low, high = 0, 50
+        elif button_range == "range_20-50":
+            low, high = 20, 50
 
 
     print(f"Kontrolní výpis, hodnota rozsahu: {low} a {high}")
@@ -65,6 +65,17 @@ def buttons_response(request):
         examples_deleno = MathCase.division(count=count_button_deleno, numeric_range_low=low, numeric_range_high=high)
         print(f"Příklady děleno: {examples_deleno}")
     print(math_examples)
+
+    if button_plus == "plus" and button_range == "range_20-50":
+        count_button_plus = int(count_button_plus)
+        examples_plus_50 = MathCase.addition_50(count=count_button_plus, numeric_range_low=low, numeric_range_high=high)
+        print(f"příklady plus 20-50: {examples_plus_50}")
+
+    if button_minus == "minus" and button_range == "range_20-50":
+        count_button_minus = int(count_button_minus)
+        examples_minus_50 = MathCase.substraction_50(count=count_button_minus, numeric_range_low=low, numeric_range_high=high)
+        print(f"příklady minus 20-50: {examples_minus_50}")
+
 
     if 'examples_plus' in locals() and examples_plus is not None:
         examples.extend(examples_plus)
